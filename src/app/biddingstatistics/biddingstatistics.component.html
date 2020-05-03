@@ -1,0 +1,75 @@
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div *ngIf="maxPlayers.length >0">
+            <div *ngFor="let players of maxPlayers">
+                
+                <h6>Max paid {{players.role}}</h6><br>
+                <table class="table table-sm">
+                    <thead class="thead-dark">
+                        <th class="px-1" scope="col">Name</th>
+                        <th class="px-1" scope="col">Role</th>
+                        <th class="px-1" scope="col">Label</th>
+                        <th class="px-1" scope="col">Price</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let player of players.players">
+                            <td class="px-1" scope="row">{{player.name}}</td>
+                            <td class="px-1">{{player.role}}</td>
+                            <td class="px-1">{{player.label}}</td>
+                            <td class="px-1">{{player.price | currency:"INR"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h3>Player details sorted by price</h3>
+        <div *ngIf="players">
+            <table class="table table-sm">
+                <thead class="thead-dark">
+                    <th class="px-1" scope="col">Name</th>
+                    <th class="px-1" scope="col">Role</th>
+                    <th class="px-1" scope="col">Label</th>
+                    <th class="px-1" scope="col">Price</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let player of players">
+                        <td class="px-1" scope="row">{{player.name}}</td>
+                        <td class="px-1">{{player.role}}</td>
+                        <td class="px-1">{{player.label}}</td>
+                        <td class="px-1">{{player.price | currency:"INR"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<table cdk-table *ngIf="players.length>0">
+  <!-- User name Definition -->
+  <ng-container cdkColumnDef="username">
+    <th cdk-header-cell *cdkHeaderCellDef> User name </th>
+    <td cdk-cell *cdkCellDef="let players"> {{players.name}} </td>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container cdkColumnDef="age">
+    <th cdk-header-cell *cdkHeaderCellDef> Age </th>
+    <td cdk-cell *cdkCellDef="let players"> {{players.name}} </td>
+  </ng-container>
+
+  <!-- Title Definition -->
+  <ng-container cdkColumnDef="title">
+    <th cdk-header-cell *cdkHeaderCellDef> Title </th>
+    <td cdk-cell *cdkCellDef="let players"> {{players.name}} </td>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <tr cdk-header-row *cdkHeaderRowDef="['username', 'age', 'title']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['username', 'age', 'title']"></tr>
+</table>

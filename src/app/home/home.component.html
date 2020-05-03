@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Team IPL 2020</h2>
+        <select class="form-control" (change)="getTeamDetails($event)">
+            <option class="mt-2">Select the Team</option>
+            <option *ngFor="let label of labels">{{label}}</option>
+        </select>
+        <br><br>
+        <div class="mx-auto" *ngIf="players.length > 0">
+            <table class="table">
+                <thead class="thead-dark">
+                    <th class="px-2" scope="col">Name</th>
+                    <th class="px-2" scope="col">Role</th>
+                    <th class="px-2" scope="col">Label</th>
+                    <th class="px-2" scope="col">Price</th>
+                </thead>
+                <tbody class="table-bordered">
+                    <tr *ngFor="let player of players">
+                        <td class="px-2" scope="row">{{player.name}}</td>
+                        <td class="px-2">{{player.role}}</td>
+                        <td class="px-2">{{player.label}}</td>
+                        <td class="px-2">{{player.price | currency:"INR"}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="col-md-6 mx-auto">
+        <h3 class="text-center">Chart info</h3>
+        <google-chart [data]="pieChart" (chartSelect)='select($event)'></google-chart>
+        <div *ngIf="playersByRole.length > 0">
+            <table class="table">
+                <thead class="thead-dark">
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Label</th>
+                    <th scope="col">Price</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let player of playersByRole">
+                        <td class="px-2" scope="row">{{player.name}}</td>
+                        <td class="px-2">{{player.role}}</td>
+                        <td class="px-2">{{player.label}}</td>
+                        <td class="px-2">{{player.price | currency:"INR"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
